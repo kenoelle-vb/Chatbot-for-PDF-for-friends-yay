@@ -9,3 +9,4 @@ streamlit
 unstructured
 langchain-chroma
 fastembed
+pdfminer
