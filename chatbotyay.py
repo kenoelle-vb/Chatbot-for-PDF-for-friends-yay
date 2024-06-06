@@ -38,12 +38,12 @@ if name == "Richness" and password == "akuorangbatak" :
 
     data = ""
 
-    if filename != "" :
-        reader = PdfReader("soc 120 barlow F2015.pdf")
-        for i in range(len(reader.pages)):
-            page = reader.pages[i]
-            pagedata = page.extract_text()
-            data = data + pagedata
+
+    reader = PdfReader(filename)
+    for i in range(len(reader.pages)):
+        page = reader.pages[i]
+        pagedata = page.extract_text()
+        data = data + pagedata
     
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
     chunks = text_splitter.split_documents(data)
