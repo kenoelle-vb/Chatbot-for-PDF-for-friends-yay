@@ -39,7 +39,7 @@ if name == "Richness" and password == "akuorangbatak" :
     data = ""
 
     if filename != "" :
-        reader = PdfReader('tugasrafsan2.pdf')
+        reader = PdfReader(filename)
         for i in range(len(reader.pages)):
             page = reader.pages[i]
             pagedata = page.extract_text()
