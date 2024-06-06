@@ -1,3 +1,4 @@
+import pdfminer
 import langchain
 from groq import Groq
 import sentence_transformers
@@ -38,7 +39,7 @@ if name == "Richness" and password == "akuorangbatak" :
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
     chunks = text_splitter.split_documents(data)
     
-    llm = ChatGroq(groq_api_key="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", model_name="llama3-8b-8192")
+    llm = ChatGroq(groq_api_key="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", model_name="llama3-8b-8192")
     
     embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
     
