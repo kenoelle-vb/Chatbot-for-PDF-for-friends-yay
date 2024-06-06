@@ -90,6 +90,3 @@ if name == "Richness" and password == "akuorangbatak" :
             st.markdown(response)
         # Add assistant response to chat history
         st.session_state.messages.append({"role": "assistant", "content": response})
-
-if name != "Richness" or password != "akuorangbatak" :
-    st.header("Reload website and try again")
