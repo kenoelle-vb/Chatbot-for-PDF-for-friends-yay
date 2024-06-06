@@ -1,0 +1,11 @@
+langchain
+groq
+sentence_transformers
+transformers -U
+langchain_community 
+langchain_text_splitters
+langchain_groq
+streamlit 
+unstructured
+langchain-chroma
+fastembed
