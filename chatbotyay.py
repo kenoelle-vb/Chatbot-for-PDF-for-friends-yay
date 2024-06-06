@@ -20,8 +20,8 @@ import streamlit as st
 st.header('Login first!!!')
 
 st.write("Who are you?")
-name = st.text_input("")
-st.write("What is the password?")
+name = st.text_input("", key = name)
+st.write("What is the password?", key = password)
 password = st.text_input("")
 
 if name == "Richness" and password == "akuorangbatak" : 
