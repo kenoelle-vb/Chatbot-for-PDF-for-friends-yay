@@ -27,14 +27,17 @@ password = st.text_input("")
 
 if name == "Richness" and password == "akuorangbatak" : 
 
+    filename = ""
+
     with st.sidebar:
         uploaded_files = st.file_uploader("Choose a file", accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             bytes_data = uploaded_file.read()
             filename = uploaded_file.name 
-    
-    loader = UnstructuredPDFLoader(filename)
-    data = loader.load()
+
+    if filename != "" :
+        loader = UnstructuredPDFLoader(filename)
+        data = loader.load()
     
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
     chunks = text_splitter.split_documents(data)
