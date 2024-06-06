@@ -1,4 +1,5 @@
 import pdfminer
+from pypdf import PdfReader
 import langchain
 from groq import Groq
 import sentence_transformers
