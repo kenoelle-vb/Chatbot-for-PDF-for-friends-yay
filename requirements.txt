@@ -10,3 +10,4 @@ unstructured
 langchain-chroma
 fastembed
 pdfminer
+pypdf
