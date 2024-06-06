@@ -39,7 +39,7 @@ if name == "Richness" and password == "akuorangbatak" :
     data = ""
 
     if filename != "" :
-        reader = PdfReader(filename)
+        reader = PdfReader("soc 120 barlow F2015.pdf")
         for i in range(len(reader.pages)):
             page = reader.pages[i]
             pagedata = page.extract_text()
