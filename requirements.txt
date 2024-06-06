@@ -1,7 +1,7 @@
 langchain
 groq
 sentence_transformers
-transformers -U
+transformers
 langchain_community 
 langchain_text_splitters
 langchain_groq
