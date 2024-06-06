@@ -36,9 +36,14 @@ if name == "Richness" and password == "akuorangbatak" :
             bytes_data = uploaded_file.read()
             filename = uploaded_file.name 
 
+    data = ""
+
     if filename != "" :
-        loader = UnstructuredPDFLoader(filename)
-        data = loader.load()
+        reader = PdfReader('tugasrafsan2.pdf')
+        for i in range(len(reader.pages)):
+            page = reader.pages[i]
+            pagedata = page.extract_text()
+            data = data + pagedata
     
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
     chunks = text_splitter.split_documents(data)
