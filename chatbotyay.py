@@ -53,35 +53,17 @@ if name == "Richness" and password == "akuorangbatak" :
         data = st.text_input("Input Text", "Please Input Text")
 
     data = str(data)
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
-    chunks = text_splitter.split_documents(data)
-    
-    llm = ChatGroq(groq_api_key="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", model_name="llama3-8b-8192")
-    
-    embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
-    
-    documents = chunks
-    embeddings = FastEmbedEmbeddings()
-    vector_store = Chroma.from_documents(documents, embeddings)
-    
-    prompting = PromptTemplate(
-        input_variables=["question"],
-        template="""You are an assistant for question-answering tasks. Use the following pieces of retrieved context
-        to answer the question, please answer the question, give as much data as possible
-        regarding the context of information, make connections with other points, and elongate the sentence"""
-            )
-    
-    retriever = MultiQueryRetriever.from_llm(vector_store.as_retriever(), llm, prompting)
-    
-    template = "Answer only from the following context : {context}, Question:{question}"
-    prompting = ChatPromptTemplate.from_template(template)
-    
-    chain = ({"context": retriever, "question": RunnablePassthrough()}
-                          | prompting
-                          | llm
-                          | StrOutputParser())
+    data = data.replace("\r\", "   ")
+
+    summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction:"
+    bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
+
+    with st.sidebar : 
+        st.code(bulletpointsummary)
     
     # STREAMLIT CODE -------------------------------------------------------------
+
+    client = Groq(api_key="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")
     
     st.title("Chat Bot")
     st.write("by Keno 4 u") 
@@ -101,6 +83,9 @@ if name == "Richness" and password == "akuorangbatak" :
         st.chat_message("user").markdown(prompt)
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
+
+        question_answer = f"Answer the question of {prompt} only from the context of {data}"
+        finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
     
         response = chain.invoke(prompt)
         # Display assistant response in chat message container
