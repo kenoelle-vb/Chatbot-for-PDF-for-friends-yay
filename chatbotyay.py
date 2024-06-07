@@ -47,7 +47,7 @@ if name == "Richness" and password == "akuorangbatak" :
         st.header("")
         st.subheader("Here is a dummy .txt file you can use")
         dummy_txt = b"dummy txt file"
-        st.download_button(label="Download data as txt", data=txt, file_name="dummy.txt", mime="text/txt",)
+        st.download_button(label="Download txt dummy", file_name="dummy.txt", mime="text/txt",)
         st.write("If you haven't converted it into .txt, convert it through the website here :")
         st.code("www.google.com")
         st.header("")
