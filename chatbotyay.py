@@ -76,10 +76,11 @@ if name == "Richness" and password == "akuorangbatak" :
     with st.sidebar : 
         st.header("")
         st.subheader('Smart Summary', divider='rainbow')
-    
-    summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
-    bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
-    bulletpointsummary =  bulletpointsummary.choices[0].message.content
+
+    if data != "" : 
+        summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
+        bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
+        bulletpointsummary =  bulletpointsummary.choices[0].message.content
     
     with st.sidebar : 
         st.code(bulletpointsummary)
