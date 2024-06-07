@@ -11,3 +11,4 @@ langchain-chroma
 fastembed
 pdfminer
 pypdf
+streamlit_pdf_viewer
