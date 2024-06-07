@@ -32,7 +32,7 @@ if name == "Richness" and password == "akuorangbatak" :
     filename = ""
 
     with st.sidebar:
-        uploaded_file = st.file_uploader("File upload", type="pdf")
+        uploaded_file = st.file_uploader("File upload")
         if uploaded_file:
             temp_dir = tempfile.mkdtemp()
             path = os.path.join(temp_dir, uploaded_file.name)
