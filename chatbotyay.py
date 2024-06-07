@@ -48,9 +48,10 @@ if name == "Richness" and password == "akuorangbatak" :
     binary_data = str(binary_data)
 
     data = ""
+    data = data + binary_data
     
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
-    chunks = text_splitter.split_documents(binary_data)
+    chunks = text_splitter.split_documents(data)
     
     llm = ChatGroq(groq_api_key="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", model_name="llama3-8b-8192")
     
