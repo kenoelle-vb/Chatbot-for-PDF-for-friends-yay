@@ -64,6 +64,7 @@ if name == "Richness" and password == "akuorangbatak" :
     binary_data = str(binary_data)
 
     with st.sidebar : 
+        st.subheader('Input text from above here', divider='rainbow')
         data = st.text_input("Input Text", "Please Input Text")
         st.write("Note : Copy the text above to here")
 
@@ -73,6 +74,7 @@ if name == "Richness" and password == "akuorangbatak" :
     client = Groq(api_key="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")
 
     with st.sidebar : 
+        st.header("")
         st.subheader('Smart Summary', divider='rainbow')
     
     summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
