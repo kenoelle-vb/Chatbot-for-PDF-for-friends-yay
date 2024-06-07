@@ -65,7 +65,7 @@ if name == "Richness" and password == "akuorangbatak" :
 
     with st.sidebar : 
         st.subheader('Input text from above here', divider='rainbow')
-        data = st.text_input("Input Text", "Please Input Text")
+        data = st.text_input("Input Text")
         st.write("Note : Copy the text above to here")
 
     data = str(data)
