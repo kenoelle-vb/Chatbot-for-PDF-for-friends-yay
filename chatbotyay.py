@@ -22,21 +22,22 @@ import tempfile
 from streamlit import session_state as ss
 from streamlit_pdf_viewer import pdf_viewer
 
-passwords = ["akuorangbatak", "im a stupid hoe"]
+corrie = "im a hoe" 
+richness = "aku orang batak"
 
 st.header('Login first!!!')
 
 st.write("What is the password?", key = "password")
 password = st.text_input("")
 
-if password == "aku orang batak" or password == "im a hoe" : 
+if password == richness or password == corrie : 
 
-    if password == "im a hoe" :
+    if password == corrie :
         st.title("HAPPY BIRTHDAY LGBT BITCH!!! :unamused: :unamused: :rainbow: :rainbow: :rainbow:")
         st.subheader("YOU'RE FUCKING FREE :rainbow: :rainbow: :rainbow:")
         st.write("I call dibs that this is the most useful gift you will receive today")
 
-    if password == "aku orang batak" :
+    if password == richness :
         st.write("Hey Richness!! you are very cool and this is a gift for you")
         st.write("Hopefully it will help you in your studies :grin: :grin:")
 
