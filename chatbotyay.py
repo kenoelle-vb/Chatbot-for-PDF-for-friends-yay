@@ -34,7 +34,8 @@ if name == "Richness" and password == "akuorangbatak" :
     filename = ""
 
     if 'pdf_ref' not in ss:
-    ss.pdf_ref = None
+        ss.pdf_ref = None
+        
     st.file_uploader("Upload PDF file", type='pdf', key='pdf')
     if ss.pdf:
         ss.pdf_ref = ss.pdf
