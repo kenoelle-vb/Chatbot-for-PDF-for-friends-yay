@@ -46,7 +46,7 @@ if name == "Richness" and password == "akuorangbatak" :
         st.write("The engine only accepts .txt file, please only upload txt files")
         st.header("")
         st.write("If you haven't converted it into .txt, convert it through the website here :")
-        st.code("www.google.com")
+        st.code("pdf2go.com/pdf-to-text")
         st.header("")
         st.header("")
         if ss.pdf:
