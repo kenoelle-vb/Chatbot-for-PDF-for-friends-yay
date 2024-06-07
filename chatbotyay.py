@@ -63,8 +63,10 @@ if password == richness or password == corrie :
         if ss.pdf:
             ss.pdf_ref = ss.pdf
         
-    if ss.pdf_ref:
+    if ss.pdf_ref != None :
         binary_data = ss.pdf_ref.getvalue()
+    if ss.pdf_ref == None : 
+        binary_data == ""
 
     with st.sidebar : 
         st.subheader('Text content of .txt file', divider='rainbow')
