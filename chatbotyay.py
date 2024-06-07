@@ -52,6 +52,7 @@ if name == "Richness" and password == "akuorangbatak" :
         binary_data = ss.pdf_ref.getvalue()
 
     with st.sidebar : 
+        st.subheader('Text content of .txt file', divider='rainbow')
         st.code(binary_data) 
         st.write("Copy the text here into the text input below")
 
