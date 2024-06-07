@@ -45,17 +45,12 @@ if name == "Richness" and password == "akuorangbatak" :
         
     st.write(binary_data) 
 
+    binary_data = str(binary_data)
+
     data = ""
-
-
-    reader = PdfReader(uploaded_file)
-    for i in range(len(reader.pages)):
-        page = reader.pages[i]
-        pagedata = page.extract_text()
-        data = data + pagedata
     
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
-    chunks = text_splitter.split_documents(data)
+    chunks = text_splitter.split_documents(binary_data)
     
     llm = ChatGroq(groq_api_key="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", model_name="llama3-8b-8192")
     
