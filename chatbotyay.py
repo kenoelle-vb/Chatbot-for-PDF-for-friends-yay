@@ -43,8 +43,11 @@ if name == "Richness" and password == "akuorangbatak" :
     if ss.pdf_ref:
         binary_data = ss.pdf_ref.getvalue()
         pdf_viewer(input=binary_data, width=700)
+
+    with open(ss, "wb") as f:
+        f.write(binary_data.getvalue())
         
-    st.write(binary_data) 
+    #st.write(binary_data) 
 
     data = ""
 
