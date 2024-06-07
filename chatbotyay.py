@@ -49,6 +49,8 @@ if name == "Richness" and password == "akuorangbatak" :
 
     st.link_button("Go to gallery", "www.google.com")
 
+    txt = st.text_area(input(""))
+
     data = ""
     data = data + binary_data
     
