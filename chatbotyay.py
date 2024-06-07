@@ -33,7 +33,7 @@ if password == "aku orang batak" or password == "im a hoe" :
 
     if password == "im a hoe" :
         st.title("HAPPY BIRTHDAY LGBT BITCH!!! :unamused: :unamused: :rainbow: :rainbow: :rainbow:")
-        st.write("YOU'RE FUCKING FREE :rainbow: :rainbow: :rainbow:")
+        st.subheader("YOU'RE FUCKING FREE :rainbow: :rainbow: :rainbow:")
         st.write("I call dibs that this is the most useful gift you will receive today")
 
     if password == "aku orang batak" :
