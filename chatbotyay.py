@@ -53,7 +53,7 @@ if name == "Richness" and password == "akuorangbatak" :
         data = st.text_input("Input Text", "Please Input Text")
 
     data = str(data)
-    data = data.replace("\r\", "   ")
+    data = data.replace("\r\", "")
 
     summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction:"
     bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
