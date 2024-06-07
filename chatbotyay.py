@@ -43,16 +43,13 @@ if name == "Richness" and password == "akuorangbatak" :
     if ss.pdf_ref:
         binary_data = ss.pdf_ref.getvalue()
         
-    st.write(binary_data) 
+    st.code(binary_data) 
 
     binary_data = str(binary_data)
 
     st.link_button("Go to gallery", "www.google.com")
 
-    txt = st.text_area(input(""))
-
-    data = ""
-    data = data + binary_data
+    data = st.text_input("Input Text", "Please Input Text")
     
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
     chunks = text_splitter.split_documents(data)
