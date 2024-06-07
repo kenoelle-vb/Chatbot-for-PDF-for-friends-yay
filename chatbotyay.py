@@ -36,18 +36,14 @@ if name == "Richness" and password == "akuorangbatak" :
     if 'pdf_ref' not in ss:
         ss.pdf_ref = None
         
-    st.file_uploader("Upload PDF file", type='pdf', key='pdf')
+    st.file_uploader("Upload .txt file", type='txt', key='pdf')
     if ss.pdf:
         ss.pdf_ref = ss.pdf
         
     if ss.pdf_ref:
         binary_data = ss.pdf_ref.getvalue()
-        pdf_viewer(input=binary_data, width=700)
-
-    with open(ss, "wb") as f:
-        f.write(binary_data.getvalue())
         
-    #st.write(binary_data) 
+    st.write(binary_data) 
 
     data = ""
 
