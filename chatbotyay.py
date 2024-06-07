@@ -44,8 +44,11 @@ if name == "Richness" and password == "akuorangbatak" :
     with st.sidebar : 
         st.file_uploader("Upload .txt file", type='txt', key='pdf')
         st.write("The engine only accepts .txt file, please only upload txt files")
+        st.header("")
         st.write("If you haven't converted it into .txt, convert it through the website here :")
         st.code("www.google.com")
+        st.header("")
+        st.header("")
         if ss.pdf:
             ss.pdf_ref = ss.pdf
         
@@ -56,6 +59,7 @@ if name == "Richness" and password == "akuorangbatak" :
         st.subheader('Text content of .txt file', divider='rainbow')
         st.code(binary_data) 
         st.write("Copy the text here into the text input below")
+        st.header("")
 
     binary_data = str(binary_data)
 
