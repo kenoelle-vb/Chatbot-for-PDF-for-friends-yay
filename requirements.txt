@@ -11,4 +11,3 @@ langchain-chroma
 fastembed
 pdfminer
 pypdf
-tempfile
