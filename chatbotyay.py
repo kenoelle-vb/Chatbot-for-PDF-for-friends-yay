@@ -83,7 +83,8 @@ if name == "Richness" and password == "akuorangbatak" :
         bulletpointsummary =  bulletpointsummary.choices[0].message.content
     
     with st.sidebar : 
-        st.code(bulletpointsummary)
+        if data != "" : 
+            st.code(bulletpointsummary)
     
     # STREAMLIT CODE -------------------------------------------------------------
 
