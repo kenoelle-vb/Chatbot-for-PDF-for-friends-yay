@@ -39,7 +39,7 @@ if name == "Richness" and password == "akuorangbatak" :
     with st.sidebar :
         st.subheader('Please input file', divider='rainbow')
         st.write("If you see red error, it is because you haven't uploaded file, upload file first and then the red thingy will go away")
-        st.write(":blue[NOTE : The maximum is 6000 words or 35000 characters], please check before inputting into system, else it will go KABOOM")
+        st.write(":blue[NOTE : The maximum is 5000 words or 25000 characters], please check before inputting into system, else it will go KABOOM")
         st.header("")
 
     with st.sidebar : 
