@@ -42,7 +42,7 @@ if name == "Richness" and password == "akuorangbatak" :
     data = ""
 
 
-    reader = PdfReader(filename)
+    reader = PdfReader(uploaded_file)
     for i in range(len(reader.pages)):
         page = reader.pages[i]
         pagedata = page.extract_text()
