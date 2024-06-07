@@ -48,7 +48,7 @@ if password == richness or password == corrie :
 
     with st.sidebar :
         st.subheader('Please input file', divider='rainbow')
-        st.write("Before chatting, please upload the txt file first and provide context, else the bot will be confused :slightly_frowning_face: :slightly_frowning_face:")
+        st.write("Before chatting, please :blue[upload the txt file first] and provide context, or :blue[input the text as context inside the "Input text from above here"] section below, else the bot will be confused :slightly_frowning_face: :slightly_frowning_face:")
         st.write(":blue[NOTE : The maximum is 5250 words or 27500 characters], please check before inputting into system, else it will go KABOOM")
         st.header("")
 
