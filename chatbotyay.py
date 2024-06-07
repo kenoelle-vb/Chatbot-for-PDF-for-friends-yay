@@ -39,6 +39,7 @@ if name == "Richness" and password == "akuorangbatak" :
     with st.sidebar :
         st.subheader('Please input file', divider='rainbow')
         st.write("If you see red error, it is because you haven't uploaded file, upload file first and then the red thingy will go away")
+        st.header("")
 
     with st.sidebar : 
         st.file_uploader("Upload .txt file", type='txt', key='pdf')
