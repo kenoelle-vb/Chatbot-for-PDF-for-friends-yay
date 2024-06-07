@@ -55,6 +55,8 @@ if name == "Richness" and password == "akuorangbatak" :
     data = str(data)
     #data = data.replace("\r\", "")
 
+    client = Groq(api_key="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")
+    
     summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction:"
     bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
 
