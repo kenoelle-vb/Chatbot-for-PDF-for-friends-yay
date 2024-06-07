@@ -36,6 +36,10 @@ if name == "Richness" and password == "akuorangbatak" :
     if 'pdf_ref' not in ss:
         ss.pdf_ref = None
 
+    with st.sidebar :
+        st.subheader('Please input file', divider='rainbow')
+        st.write("If you see red error, it is because you haven't uploaded file, upload file first and then the red thingy will go away")
+
     with st.sidebar : 
         st.file_uploader("Upload .txt file", type='txt', key='pdf')
         if ss.pdf:
@@ -46,20 +50,26 @@ if name == "Richness" and password == "akuorangbatak" :
 
     with st.sidebar : 
         st.code(binary_data) 
+        st.write("Copy the text here into the text input below")
 
     binary_data = str(binary_data)
 
     with st.sidebar : 
         data = st.text_input("Input Text", "Please Input Text")
+        st.write("Note : Copy the text above to here")
 
     data = str(data)
     #data = data.replace("\r\", "")
 
     client = Groq(api_key="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")
+
+    with st.sidebar : 
+        st.subheader('Smart Summary', divider='rainbow')
     
     summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
     bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
-
+    bulletpointsummary =  bulletpointsummary.choices[0].message.content
+    
     with st.sidebar : 
         st.code(bulletpointsummary)
     
@@ -88,6 +98,7 @@ if name == "Richness" and password == "akuorangbatak" :
 
         question_answer = f"Answer the question of {prompt} only from the context of {data}"
         finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
+        finalanswer =  finalanswer.choices[0].message.content
     
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
