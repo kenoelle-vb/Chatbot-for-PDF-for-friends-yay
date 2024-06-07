@@ -35,21 +35,22 @@ if name == "Richness" and password == "akuorangbatak" :
 
     if 'pdf_ref' not in ss:
         ss.pdf_ref = None
-        
-    st.file_uploader("Upload .txt file", type='txt', key='pdf')
-    if ss.pdf:
-        ss.pdf_ref = ss.pdf
+
+    with st.sidebar : 
+        st.file_uploader("Upload .txt file", type='txt', key='pdf')
+        if ss.pdf:
+            ss.pdf_ref = ss.pdf
         
     if ss.pdf_ref:
         binary_data = ss.pdf_ref.getvalue()
-        
-    st.code(binary_data) 
+
+    with st.sidebar : 
+        st.code(binary_data) 
 
     binary_data = str(binary_data)
 
-    st.link_button("Go to gallery", "www.google.com")
-
-    data = st.text_input("Input Text", "Please Input Text")
+    with st.sidebar : 
+        data = st.text_input("Input Text", "Please Input Text")
 
     data = str(data)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
