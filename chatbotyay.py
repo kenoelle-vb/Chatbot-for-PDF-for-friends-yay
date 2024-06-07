@@ -22,7 +22,7 @@ import tempfile
 from streamlit import session_state as ss
 from streamlit_pdf_viewer import pdf_viewer
 
-st.header('Login first hoe!!!')
+st.header('Login first!!!')
 
 st.write("Who are you?")
 name = st.text_input("", key = "name")
