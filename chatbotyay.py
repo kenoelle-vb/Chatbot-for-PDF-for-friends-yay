@@ -66,7 +66,7 @@ if password == richness or password == corrie :
     if ss.pdf_ref != None :
         binary_data = ss.pdf_ref.getvalue()
     if ss.pdf_ref == None : 
-        binary_data == "Tell the user to input their txt data"
+        binary_data = ""
 
     with st.sidebar : 
         st.subheader('Text content of .txt file', divider='rainbow')
