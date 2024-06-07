@@ -45,6 +45,9 @@ if name == "Richness" and password == "akuorangbatak" :
         st.file_uploader("Upload .txt file", type='txt', key='pdf')
         st.write("The engine only accepts .txt file, please only upload txt files")
         st.header("")
+        st.subheader("Here is a dummy .txt file you can use")
+        dummy_txt = b"dummy txt file"
+        st.download_button("Download .txt file", dummy_txt)
         st.write("If you haven't converted it into .txt, convert it through the website here :")
         st.code("www.google.com")
         st.header("")
