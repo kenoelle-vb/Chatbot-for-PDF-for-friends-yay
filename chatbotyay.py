@@ -18,6 +18,7 @@ from langchain.vectorstores.utils import filter_complex_metadata
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.prompts import ChatPromptTemplate, PromptTemplate
 import streamlit as st
+import tempfile
 
 st.header('Login first!!!')
 
@@ -31,10 +32,12 @@ if name == "Richness" and password == "akuorangbatak" :
     filename = ""
 
     with st.sidebar:
-        uploaded_files = st.file_uploader("Choose a file", accept_multiple_files=True)
-        for uploaded_file in uploaded_files:
-            bytes_data = uploaded_file.read()
-            filename = uploaded_file.name 
+        uploaded_file = st.file_uploader("File upload", type="pdf")
+        if uploaded_file:
+            temp_dir = tempfile.mkdtemp()
+            path = os.path.join(temp_dir, uploaded_file.name)
+            with open(path, "wb") as f:
+                    f.write(uploaded_file.getvalue())
 
     data = ""
 
