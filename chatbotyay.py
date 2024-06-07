@@ -31,6 +31,10 @@ password = st.text_input("")
 
 if password == "aku orang batak" or password == "im a hoe" : 
 
+    if password == "im a hoe" :
+        st.title("HAPPY BIRTHDAY LGBT BITCH!!! :unamused: :unamused:")
+        st.write("YOU'RE FUCKING FREE :rainbow: :rainbow: :rainbow:")
+
     filename = ""
 
     if 'pdf_ref' not in ss:
