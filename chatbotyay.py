@@ -19,6 +19,8 @@ from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.prompts import ChatPromptTemplate, PromptTemplate
 import streamlit as st
 import tempfile
+from streamlit import session_state as ss
+from streamlit_pdf_viewer import pdf_viewer
 
 st.header('Login first!!!')
 
@@ -31,13 +33,17 @@ if name == "Richness" and password == "akuorangbatak" :
 
     filename = ""
 
-    with st.sidebar:
-        uploaded_file = st.file_uploader("File upload")
-        if uploaded_file:
-            temp_dir = tempfile.mkdtemp()
-            path = os.path.join(temp_dir, uploaded_file.name)
-            with open(path, "wb") as f:
-                    f.write(uploaded_file.getvalue())
+    if 'pdf_ref' not in ss:
+    ss.pdf_ref = None
+    st.file_uploader("Upload PDF file", type='pdf', key='pdf')
+    if ss.pdf:
+        ss.pdf_ref = ss.pdf
+        
+    if ss.pdf_ref:
+        binary_data = ss.pdf_ref.getvalue()
+        pdf_viewer(input=binary_data, width=700)
+        
+    st.write(binary_data) 
 
     data = ""
 
