@@ -50,7 +50,8 @@ if name == "Richness" and password == "akuorangbatak" :
     st.link_button("Go to gallery", "www.google.com")
 
     data = st.text_input("Input Text", "Please Input Text")
-    
+
+    data = str(data)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
     chunks = text_splitter.split_documents(data)
     
