@@ -48,7 +48,7 @@ if name == "Richness" and password == "akuorangbatak" :
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
     chunks = text_splitter.split_documents(data)
     
-    llm = ChatGroq(groq_api_key="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", model_name="llama3-8b-8192")
+    llm = ChatGroq(groq_api_key="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", model_name="llama3-8b-8192")
     
     embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
     
