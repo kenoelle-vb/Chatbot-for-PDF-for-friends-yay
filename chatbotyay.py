@@ -29,94 +29,93 @@ st.header('Login first!!!')
 st.write("What is the password?", key = "password")
 password = st.text_input("")
 
-for password in passwords : 
-    if password in passwords : 
+if password == "aku orang batak" or password == "im a hoe" : 
 
-        filename = ""
+    filename = ""
+
+    if 'pdf_ref' not in ss:
+        ss.pdf_ref = None
+
+    with st.sidebar :
+        st.subheader('Please input file', divider='rainbow')
+        st.write("If you see red error, it is because you haven't uploaded file, upload file first and then the red thingy will go away")
+        st.write(":blue[NOTE : The maximum is 5250 words or 27500 characters], please check before inputting into system, else it will go KABOOM")
+        st.header("")
+
+    with st.sidebar : 
+        st.file_uploader("Upload .txt file", type='txt', key='pdf')
+        st.write("The engine only accepts .txt file, please only upload txt files")
+        st.header("")
+        st.write("If you haven't converted it into .txt, convert it through the website here :")
+        st.code("pdf2go.com/pdf-to-text")
+        st.header("")
+        st.header("")
+        if ss.pdf:
+            ss.pdf_ref = ss.pdf
+        
+    if ss.pdf_ref:
+        binary_data = ss.pdf_ref.getvalue()
+
+    with st.sidebar : 
+        st.subheader('Text content of .txt file', divider='rainbow')
+        st.code(binary_data) 
+        st.write("Copy the text here into the text input below")
+        st.header("")
+
+    binary_data = str(binary_data)
+
+    with st.sidebar : 
+        st.subheader('Input text from above here', divider='rainbow')
+        data = st.text_input("Input Text")
+        st.write("Note : Copy the text above to here")
+
+    data = str(data)
+    #data = data.replace("\r\", "")
+
+    client = Groq(api_key="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")
+
+    with st.sidebar : 
+        st.header("")
+        st.subheader('Smart Summary', divider='rainbow')
+
+    if data != "" : 
+        summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
+        bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
+        bulletpointsummary =  bulletpointsummary.choices[0].message.content
     
-        if 'pdf_ref' not in ss:
-            ss.pdf_ref = None
-    
-        with st.sidebar :
-            st.subheader('Please input file', divider='rainbow')
-            st.write("If you see red error, it is because you haven't uploaded file, upload file first and then the red thingy will go away")
-            st.write(":blue[NOTE : The maximum is 5250 words or 27500 characters], please check before inputting into system, else it will go KABOOM")
-            st.header("")
-    
-        with st.sidebar : 
-            st.file_uploader("Upload .txt file", type='txt', key='pdf')
-            st.write("The engine only accepts .txt file, please only upload txt files")
-            st.header("")
-            st.write("If you haven't converted it into .txt, convert it through the website here :")
-            st.code("pdf2go.com/pdf-to-text")
-            st.header("")
-            st.header("")
-            if ss.pdf:
-                ss.pdf_ref = ss.pdf
-            
-        if ss.pdf_ref:
-            binary_data = ss.pdf_ref.getvalue()
-    
-        with st.sidebar : 
-            st.subheader('Text content of .txt file', divider='rainbow')
-            st.code(binary_data) 
-            st.write("Copy the text here into the text input below")
-            st.header("")
-    
-        binary_data = str(binary_data)
-    
-        with st.sidebar : 
-            st.subheader('Input text from above here', divider='rainbow')
-            data = st.text_input("Input Text")
-            st.write("Note : Copy the text above to here")
-    
-        data = str(data)
-        #data = data.replace("\r\", "")
-    
-        client = Groq(api_key="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")
-    
-        with st.sidebar : 
-            st.header("")
-            st.subheader('Smart Summary', divider='rainbow')
-    
+    with st.sidebar : 
         if data != "" : 
-            summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
-            bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
-            bulletpointsummary =  bulletpointsummary.choices[0].message.content
-        
-        with st.sidebar : 
-            if data != "" : 
-                st.code(bulletpointsummary)
-        
-        # STREAMLIT CODE -------------------------------------------------------------
+            st.code(bulletpointsummary)
     
-        client = Groq(api_key="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")
-        
-        st.title("Chat Bot")
-        st.write("by Keno 4 u") 
-        
-        # Initialize chat history
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
-        
-        # Display chat messages from history on app rerun
-        for message in st.session_state.messages:
-            with st.chat_message(message["role"]):
-                st.markdown(message["content"])
-        
-        # React to user input
-        if prompt := st.chat_input("What is up?"):
-            # Display user message in chat message container
-            st.chat_message("user").markdown(prompt)
-            # Add user message to chat history
-            st.session_state.messages.append({"role": "user", "content": prompt})
+    # STREAMLIT CODE -------------------------------------------------------------
+
+    client = Groq(api_key="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")
     
-            question_answer = f"Answer the question of {prompt} only from the context of {data}"
-            finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
-            finalanswer =  finalanswer.choices[0].message.content
-        
-            # Display assistant response in chat message container
-            with st.chat_message("assistant"):
-                st.markdown(finalanswer)
-            # Add assistant response to chat history
-            st.session_state.messages.append({"role": "assistant", "content": finalanswer})
+    st.title("Chat Bot")
+    st.write("by Keno 4 u") 
+    
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+    
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+    
+    # React to user input
+    if prompt := st.chat_input("What is up?"):
+        # Display user message in chat message container
+        st.chat_message("user").markdown(prompt)
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+
+        question_answer = f"Answer the question of {prompt} only from the context of {data}"
+        finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
+        finalanswer =  finalanswer.choices[0].message.content
+    
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            st.markdown(finalanswer)
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": finalanswer})
