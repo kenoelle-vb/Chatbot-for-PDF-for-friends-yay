@@ -42,6 +42,9 @@ if name == "Richness" and password == "akuorangbatak" :
 
     with st.sidebar : 
         st.file_uploader("Upload .txt file", type='txt', key='pdf')
+        st.write("The engine only accepts .txt file, please only upload txt files")
+        st.write("If you haven't converted it into .txt, convert it through the website here :")
+        st.code("www.google.com")
         if ss.pdf:
             ss.pdf_ref = ss.pdf
         
