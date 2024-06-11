@@ -24,13 +24,14 @@ from streamlit_pdf_viewer import pdf_viewer
 
 corrie = "im a hoe" 
 richness = "aku orang batak"
+keno = "iamkeno"
 
 st.header('Login first!!!')
 
 st.write("What is the password?", key = "password")
 password = st.text_input("")
 
-if password == richness or password == corrie : 
+if password == richness or password == corrie or password == keno : 
 
     if password == corrie :
         st.title("HAPPY BIRTHDAY LGBT BITCH!!! :unamused: :unamused: :rainbow: :rainbow: :rainbow:")
@@ -40,6 +41,14 @@ if password == richness or password == corrie :
     if password == richness :
         st.write("Hey Richness!! you are very cool and this is a gift for you")
         st.write("Hopefully it will help you in your studies :grin: :grin:")
+
+    if password == richness : 
+        client = Groq(api_key="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")
+    if password == corrie : 
+        client = Groq(api_key="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")
+    if password == keno :
+        client = Groq(api_key="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")
+    
 
     filename = ""
 
@@ -84,8 +93,6 @@ if password == richness or password == corrie :
     data = str(data)
     #data = data.replace("\r\", "")
 
-    client = Groq(api_key="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")
-
     with st.sidebar : 
         st.header("")
         st.subheader('Smart Summary', divider='rainbow')
@@ -100,8 +107,6 @@ if password == richness or password == corrie :
             st.code(bulletpointsummary)
     
     # STREAMLIT CODE -------------------------------------------------------------
-
-    client = Groq(api_key="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")
     
     st.title("Chat Bot")
     st.write("by Keno 4 u") 
