@@ -22,10 +22,10 @@ import tempfile
 from streamlit import session_state as ss
 from streamlit_pdf_viewer import pdf_viewer
 
-corrie = "im a hoe" 
-richness = "aku orang batak"
-keno = "iamkeno"
-rafsan = "intjxentpgaysex" 
+corrie = "im a hoea" 
+richness = "aku orang bataka"
+keno = "iamkenoa"
+rafsan = "intjxentpgaysexa" 
 
 st.header('Login first!!!')
 
