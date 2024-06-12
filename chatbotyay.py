@@ -128,11 +128,6 @@ if password == richness or password == corrie or password == keno or password ==
     with st.sidebar : 
         st.header("")
         st.subheader('Smart Summary', divider='rainbow')
-
-    if data != "" : 
-        summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
-        bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
-        bulletpointsummary =  bulletpointsummary.choices[0].message.content
     
     with st.sidebar : 
         if data != "" : 
@@ -164,6 +159,16 @@ if password == richness or password == corrie or password == keno or password ==
         #finalanswer =  finalanswer.choices[0].message.content
 
         finalanswer = chain.invoke(prompt)
+
+        if data != "" : 
+            summary_bullet_point = f"Summarize {finalanswer} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
+            bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
+            bulletpointsummary =  bulletpointsummary.choices[0].message.content
+
+        with st.sidebar : 
+        if data != "" : 
+            st.code(bulletpointsummary)
+        
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
             st.markdown(finalanswer)
