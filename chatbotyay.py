@@ -134,7 +134,7 @@ if password == richness or password == corrie or password == keno or password ==
             st.code(bulletpointsummary)
     
     # STREAMLIT CODE -------------------------------------------------------------
-    
+
     st.title("Chat Bot")
     st.write("by Keno 4 u") 
     
@@ -146,6 +146,8 @@ if password == richness or password == corrie or password == keno or password ==
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+
+    finalanswer = ""
     
     # React to user input
     if prompt := st.chat_input("What is up?"):
@@ -160,7 +162,7 @@ if password == richness or password == corrie or password == keno or password ==
 
         finalanswer = chain.invoke(prompt)
 
-        if data != "" : 
+        if data != "" and finalanswer != "" : 
             summary_bullet_point = f"Summarize {finalanswer} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
             bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
             bulletpointsummary =  bulletpointsummary.choices[0].message.content
