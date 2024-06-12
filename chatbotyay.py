@@ -25,29 +25,36 @@ from streamlit_pdf_viewer import pdf_viewer
 corrie = "im a hoe" 
 richness = "aku orang batak"
 keno = "iamkeno"
+rafsan = "intjxentpgaysex" 
 
 st.header('Login first!!!')
 
 st.write("What is the password?", key = "password")
 password = st.text_input("")
 
-if password == richness or password == corrie or password == keno : 
+if password == richness or password == corrie or password == keno or password == rafsan : 
 
     if password == corrie :
         st.title("HAPPY BIRTHDAY LGBT BITCH!!! :unamused: :unamused: :rainbow: :rainbow: :rainbow:")
         st.subheader("YOU'RE FUCKING FREE :rainbow: :rainbow: :rainbow:")
         st.write("I call dibs that this is the most useful gift you will receive today")
 
+    if password == corrie :
+        st.title("halo rafsan :rainbow: :rainbow: :rainbow:")
+        st.subheader("are you gay? :rainbow: :rainbow: :rainbow:")
+
     if password == richness :
         st.write("Hey Richness!! you are very cool and this is a gift for you")
         st.write("Hopefully it will help you in your studies :grin: :grin:")
 
     if password == richness : 
-        client = Groq(api_key="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")
+        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # knolel
     if password == corrie : 
-        client = Groq(api_key="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")
+        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # sama kek corrie 
     if password == keno :
-        client = Groq(api_key="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")
+        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # backupassistant
+    if password == rafsan : 
+        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # sama kek corrie
     
 
     filename = ""
@@ -92,6 +99,31 @@ if password == richness or password == corrie or password == keno :
 
     data = str(data)
     #data = data.replace("\r\", "")
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
+    chunks = text_splitter.split_documents(data)
+
+    embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+
+    documents = chunks
+    embeddings = FastEmbedEmbeddings()
+    vector_store = Chroma.from_documents(documents, embeddings)
+
+    prompting = PromptTemplate(
+    input_variables=["question"],
+    template="""You are an assistant for question-answering tasks. Use the following pieces of retrieved context
+    to answer the question, please answer the question, give as much data as possible
+    regarding the context of information, make connections with other points, and elongate the sentence"""
+        )
+
+    retriever = MultiQueryRetriever.from_llm(vector_store.as_retriever(), llm, prompting)
+
+    template = "Answer only from the following context : {context}, Question:{question}"
+    prompting = ChatPromptTemplate.from_template(template)
+
+    chain = ({"context": retriever, "question": RunnablePassthrough()}
+                      | prompting
+                      | llm
+                      | StrOutputParser())
 
     with st.sidebar : 
         st.header("")
@@ -127,10 +159,11 @@ if password == richness or password == corrie or password == keno :
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
 
-        question_answer = f"Answer the question of {prompt} only from the context of {data}"
-        finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
-        finalanswer =  finalanswer.choices[0].message.content
-    
+        #question_answer = f"Answer the question of {prompt} only from the context of {data}"
+        #finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
+        #finalanswer =  finalanswer.choices[0].message.content
+
+        finalanswer = chain.invoke(prompt)
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
             st.markdown(finalanswer)
