@@ -29,7 +29,7 @@ rafsan = "intjxentpgaysex"
 
 st.header('Login first!!!')
 
-st.write("What is the password?", key = "password")
+st.write("What is the password?")
 password = st.text_input("")
 
 if password == richness or password == corrie or password == keno or password == rafsan : 
