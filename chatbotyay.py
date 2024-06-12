@@ -25,7 +25,7 @@ from streamlit_pdf_viewer import pdf_viewer
 corrie = "im a hoe" 
 richness = "aku orang batak"
 keno = "iamkeno"
-rafsan = "mysuguru<3" 
+rafsan = "mysuguru" 
 
 st.header('Login first!!!')
 
