@@ -22,14 +22,14 @@ import tempfile
 from streamlit import session_state as ss
 from streamlit_pdf_viewer import pdf_viewer
 
-corrie = "im a hoea" 
-richness = "aku orang bataka"
-keno = "iamkenoa"
-rafsan = "intjxentpgaysexa" 
+corrie = "im a hoe" 
+richness = "aku orang batak"
+keno = "iamkeno"
+rafsan = "mysuguru<3" 
 
 st.header('Login first!!!')
 
-st.write("What is the password?")
+st.write("What is the password?", key = "password")
 password = st.text_input("")
 
 if password == richness or password == corrie or password == keno or password == rafsan : 
@@ -39,22 +39,22 @@ if password == richness or password == corrie or password == keno or password ==
         st.subheader("YOU'RE FUCKING FREE :rainbow: :rainbow: :rainbow:")
         st.write("I call dibs that this is the most useful gift you will receive today")
 
-    if password == rafsan :
-        st.title("halo rafsan :rainbow: :rainbow: :rainbow:")
-        st.subheader("are you gay? :rainbow: :rainbow: :rainbow:")
-
     if password == richness :
         st.write("Hey Richness!! you are very cool and this is a gift for you")
         st.write("Hopefully it will help you in your studies :grin: :grin:")
 
+    if password == rafsan :
+        st.title("hello pookie :rainbow: :rainbow: :rainbow:")
+        st.subheader("are you gay? :rainbow: :rainbow: :rainbow:")
+
     if password == richness : 
-        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # knolel
+        client = Groq(api_key="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")
     if password == corrie : 
-        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # sama kek corrie 
+        client = Groq(api_key="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")
     if password == keno :
-        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # backupassistant
+        client = Groq(api_key="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")
     if password == rafsan : 
-        llm = ChatGroq(api_key="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", model_name="llama3-8b-8192") # sama kek corrie
+        client = Groq(api_key="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")
     
 
     filename = ""
@@ -99,42 +99,22 @@ if password == richness or password == corrie or password == keno or password ==
 
     data = str(data)
     #data = data.replace("\r\", "")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=1000)
-    chunks = text_splitter.split_documents(data)
-
-    embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
-
-    documents = chunks
-    embeddings = FastEmbedEmbeddings()
-    vector_store = Chroma.from_documents(documents, embeddings)
-
-    prompting = PromptTemplate(
-    input_variables=["question"],
-    template="""You are an assistant for question-answering tasks. Use the following pieces of retrieved context
-    to answer the question, please answer the question, give as much data as possible
-    regarding the context of information, make connections with other points, and elongate the sentence"""
-        )
-
-    retriever = MultiQueryRetriever.from_llm(vector_store.as_retriever(), llm, prompting)
-
-    template = "Answer only from the following context : {context}, Question:{question}"
-    prompting = ChatPromptTemplate.from_template(template)
-
-    chain = ({"context": retriever, "question": RunnablePassthrough()}
-                      | prompting
-                      | llm
-                      | StrOutputParser())
 
     with st.sidebar : 
         st.header("")
         st.subheader('Smart Summary', divider='rainbow')
+
+    if data != "" : 
+        summary_bullet_point = f"Summarize {data} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
+        bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
+        bulletpointsummary =  bulletpointsummary.choices[0].message.content
     
     with st.sidebar : 
         if data != "" : 
             st.code(bulletpointsummary)
     
     # STREAMLIT CODE -------------------------------------------------------------
-
+    
     st.title("Chat Bot")
     st.write("by Keno 4 u") 
     
@@ -146,8 +126,6 @@ if password == richness or password == corrie or password == keno or password ==
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-
-    finalanswer = ""
     
     # React to user input
     if prompt := st.chat_input("What is up?"):
@@ -156,21 +134,10 @@ if password == richness or password == corrie or password == keno or password ==
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
 
-        #question_answer = f"Answer the question of {prompt} only from the context of {data}"
-        #finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
-        #finalanswer =  finalanswer.choices[0].message.content
-
-        finalanswer = chain.invoke(prompt)
-
-        #if data != "" and finalanswer != "" : 
-            #summary_bullet_point = f"Summarize {finalanswer} into 10 bullet points, just print the bullet points, don't add anything else, not even an introduction"
-            #bulletpointsummary = client.chat.completions.create(messages=[{"role":"user", "content":summary_bullet_point,}],model="llama3-8b-8192")
-            #bulletpointsummary =  bulletpointsummary.choices[0].message.content
-
-        #with st.sidebar : 
-        #if data != "" : 
-            #st.code(bulletpointsummary)
-        
+        question_answer = f"Answer the question of {prompt} only from the context of {data}"
+        finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
+        finalanswer =  finalanswer.choices[0].message.content
+    
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
             st.markdown(finalanswer)
