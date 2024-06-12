@@ -25,14 +25,14 @@ from streamlit_pdf_viewer import pdf_viewer
 corrie = "im a hoe" 
 richness = "aku orang batak"
 keno = "iamkeno"
-rafsan = "mysuguru" 
+rafsan = "mysuguru<3" 
 
 st.header('Login first!!!')
 
 st.write("What is the password?", key = "password")
 password = st.text_input("")
 
-if password == richness or password == corrie or password == keno or password == rafsan : 
+if password == richness or password == corrie or password == rafsan : 
 
     if password == corrie :
         st.title("HAPPY BIRTHDAY LGBT BITCH!!! :unamused: :unamused: :rainbow: :rainbow: :rainbow:")
