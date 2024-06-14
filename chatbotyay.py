@@ -32,7 +32,7 @@ st.header('Login first!!!')
 st.write("What is the password?", key = "password")
 password = st.text_input("")
 
-if password == richness or password == corrie or password == rafsan : 
+if password == richness or password == corrie or password == keno : 
 
     if password == corrie :
         st.title("HAPPY BIRTHDAY LGBT BITCH!!! :unamused: :unamused: :rainbow: :rainbow: :rainbow:")
