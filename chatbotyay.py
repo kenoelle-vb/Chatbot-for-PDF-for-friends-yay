@@ -48,11 +48,11 @@ if password == richness or password == corrie or password == keno :
         st.subheader("are you gay? :rainbow: :rainbow: :rainbow:")
 
     if password == richness : 
-        client = Groq(api_key="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")
+        client = Groq(api_key="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")
     if password == corrie : 
         client = Groq(api_key="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")
     if password == keno :
-        client = Groq(api_key="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")
+        client = Groq(api_key="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")
     if password == rafsan : 
         client = Groq(api_key="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")
     
