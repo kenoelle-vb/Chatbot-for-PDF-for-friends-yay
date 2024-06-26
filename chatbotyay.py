@@ -134,10 +134,16 @@ if password == richness or password == corrie or password == keno :
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
 
-        question_answer = f"Answer the question of {prompt} only from the context of {data} for multiple choice questions, just answer and give only 1 sentence detail, but for essay questions, explain with great detail"
-        finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
-        finalanswer =  finalanswer.choices[0].message.content
-    
+        if password == richness :
+            question_answer = f"Answer the question of {prompt} only from the context of {data} for multiple choice questions, just answer and give only 1 sentence detail"
+            finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
+            finalanswer =  finalanswer.choices[0].message.content
+
+        if password == keno :
+            question_answer = f"Answer the question of {prompt} only from the context of {data} and answer explain in detail with theoritic background based on the text"
+            finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-8b-8192")
+            finalanswer =  finalanswer.choices[0].message.content
+        
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
             st.markdown(finalanswer)
