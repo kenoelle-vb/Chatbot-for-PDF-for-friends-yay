@@ -140,7 +140,7 @@ if password == richness or password == corrie or password == keno :
             finalanswer =  finalanswer.choices[0].message.content
 
         if password == keno :
-            question_answer = f"Answer the question of {prompt} from the context of {data} and answer with explanation, use various other knowledge that you have."
+            question_answer = f"Answer the question of {prompt} from the context of {data} and answer strictly on the guideline of the question. Only answer in Indonesian language, do not use any other language"
             finalanswer = client.chat.completions.create(messages=[{"role":"user", "content":question_answer,}],model="llama3-70b-8192")
             finalanswer =  finalanswer.choices[0].message.content
         
