@@ -52,7 +52,7 @@ if password == richness or password == corrie or password == keno :
     if password == corrie : 
         client = Groq(api_key="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")
     if password == keno :
-        client = Groq(api_key="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")
+        client = Groq(api_key="")
     if password == rafsan : 
         client = Groq(api_key="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")
     
